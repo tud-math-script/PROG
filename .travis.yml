@@ -13,6 +13,3 @@ deploy:
   file: "Vorlesung PROG.pdf"
   on:
     tags: false
-    branches:
-      only:
-        - master
