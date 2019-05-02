@@ -2,9 +2,10 @@ sudo: required
 language: generic
 services: docker
 script:
-- docker pull dxjoke/tectonic-docker
-- docker run --mount src=$TRAVIS_BUILD_DIR/,target=/usr/src/tex,type=bind dxjoke/tectonic-docker
-  /bin/sh -c "tectonic Vorlesung\ PROG.tex"
+  - docker pull dxjoke/tectonic-docker
+  - docker run --mount src=$TRAVIS_BUILD_DIR/,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic Vorlesung\ PROG.tex"
+  - ls -la
+
 deploy:
   provider: releases
   api_key:
