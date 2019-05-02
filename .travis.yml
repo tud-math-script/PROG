@@ -1,18 +1,15 @@
 sudo: required
 language: generic
 services: docker
-
 script:
-  # We use the docker image from https://hub.docker.com/r/dxjoke/tectonic-docker/
-  - docker pull dxjoke/tectonic-docker
-  - ls -la
-  # Compiling only main.tex:
-  - docker run --mount src=$TRAVIS_BUILD_DIR/,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic Vorlesung\ PROG.tex"
-
+- docker pull dxjoke/tectonic-docker
+- docker run --mount src=$TRAVIS_BUILD_DIR/,target=/usr/src/tex,type=bind dxjoke/tectonic-docker
+  /bin/sh -c "tectonic Vorlesung\ PROG.tex"
 deploy:
   provider: releases
-  api_key: $TOKEN
-  file: "Vorlesung Prog.tex"
-  skip_cleanup: true
+  api_key:
+    secure: T+shAj4+FUaBTfmLyx6YX9IG/LtOHpp4zNDTl6WBjRQwK/90VKIAGL3KJdYc0G+uY/lEQSWzy3JWQmmuqhh+T0nrPxucl1sxWKDI6hZeF2AQrjus0Q+3Z9Jf6nJNkhcGrfS52cO7/gj4LYQJdNVzasoX1vAsbQDDTXaIofRS+0kdN3DxEwwRZiPf7kQjbrawhCsTrSq4Su3hw/JIo7QWDuCG6dUqVrJRRlxxTSn3x/JkDB1lhtGs6Y74SyCElZUHLjPVkPTQrHYgzs7WyYMVYmACbRZ2aDyCpKgLE679ZiYGAaHKyqmak3/L1rwZT2CbCIauyLPdbtND2WDxHsbvdCLGd+DNWYe5ypXNM4QQ0YnFcrwV4kyojjyk+rfeUQpDGhppuXAR7zwiE6U39tqiWPutsnDHcaIU29aMtr2Z6C5lRKwFLuFYFVdw4PRhr3rih3Ietg4mRlj2yCbi/ImrzwIuW1go0SriwFZlHPjXhiDe/gxVcaUR9MEUYpndGPXljYzGWZ12YrNv1ljhnmE4K/5c+ZZxPDVK1/hFSxkAryIvBeYKuIl2JDncgwyL8vCm0UGgxxcl4xFmPJZCnmMii60KlmC4WN9qE1vyiglcl0mHH6xuD34KYvkynNYAmB7qprUe9zBZaIH9geEFO/PKX2cFChDJ5iozGYrcUMTF3jU=
+  file: Vorlesung PROG.pdf
   on:
     tags: false
+    repo: tud-math-script/PROG
