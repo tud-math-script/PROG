@@ -1,0 +1,17 @@
+sudo: required
+language: generic
+services: docker
+
+script:
+  # We use the docker image from https://hub.docker.com/r/dxjoke/tectonic-docker/
+  - docker pull dxjoke/tectonic-docker
+  # Compiling only main.tex:
+  - docker run --mount src=$TRAVIS_BUILD_DIR/src,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic Vorlesung\ PROG.tex"
+
+deploy:
+  provider: releases
+  api_key: $TOKEN
+  file: "Vorlesung Prog.tex"
+  skip_cleanup: true
+  on:
+    tags: false
