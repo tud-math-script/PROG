@@ -13,4 +13,6 @@ deploy:
   file: "Vorlesung PROG.pdf"
   on:
     tags: false
-    repo: tud-math-script/PROG
+    branches:
+      only:
+        - master
